@@ -1,0 +1,17 @@
+{% extends "baza.html" %}
+{% block content %}
+	<p class="lead">Podaj login oraz dwukrotnie hasło by dodać nowe konto.</p>
+	<form action="{{ url_for('rejestracja') }}" method="post">
+		<table>
+			<tbody>
+				<tr><td>Login:</td><td><input type=text name=username></td></tr>
+				<tr><td>Hasło:</td><td><input type=password name=password></td></tr>
+				<tr><td>Powtórz hasło:</td><td><input type=password name=password_confirmation></td></tr>
+				<tr><td></td><td><input type=submit value=Rejestruj></td></tr>
+			</tbody>
+		</table>
+	</form>
+	{%if result%}
+		<h6>{{result}}</h6>
+	{%endif%}
+{% endblock %}
