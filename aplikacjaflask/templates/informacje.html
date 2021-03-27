@@ -1,0 +1,11 @@
+{%extends "baza.html"%}
+
+{% block content %}
+		{%if tresc%}
+		<p class="lead">{{tresc}}</p>
+		{%endif%}
+		
+		{% for post in posty %}
+		<div><p>{{post.author.username}} napisal/a: <b>{{post.body}}</b></p></div>
+		{%endfor%}
+{% endblock %}
