@@ -6,6 +6,19 @@
 		{%endif%}
 		
 		{% for post in posty %}
-		<div><p>{{post.author.username}} napisal/a: <b>{{post.body}}</b></p></div>
+		<div><p>{{post.pub_date.strftime("%Y-%m-%d %H:%M")}}   {{post.user.username}} napisal/a: <b>{{post.body}}</b></p></div>
 		{%endfor%}
+		<p class="lead">Możesz dodać nowe posty formularzem poniżej</p>
+		<form action="{{ url_for('informacje') }}" method="post">
+			<table>
+				<tbody>
+					<tr><td>Tytuł posta:</td><td><input type=text name=title></td></tr>
+					<tr><td>Treść:</td><td><input type=textarea name=body></td></tr>
+					<tr><td></td><td><input type=submit value="Dodaj posta"></td></tr>
+				</tbody>
+			</table>
+		</form>
+	{%if msg%}
+		<h6>{{msg}}</h6>
+	{%endif%}
 {% endblock %}
