@@ -1,0 +1,26 @@
+.naglowek{
+	color:#007bff;
+	text-align:center;
+}
+.tresc{
+	text-justify:justify;
+}
+.kontener_glowny{
+	color:white;
+	min-height:85vh;
+	background-color:black;
+}
+.informacja{
+	font-size:1.2em;
+	color:#f57769
+}
+.podtytul{
+	
+}
+.obrazki_zainteresowan{
+	
+}
+.moje_tlo{
+	background-color:#00112b;
+}
+

@@ -38,42 +38,59 @@ class Category(db.Model):
     def __repr__(self):
         return '<Category %r>' % self.name
 
-# db.create_all()
-# db.session.commit()
-# admin=User(username="admin",password='1234')
-# db.session.add(admin)
+#db.create_all()
+#db.session.commit()
+#admin=User(username="admin",password='1234')
+#db.session.add(admin)
 
-# py = Category(name='Python')
+#py = Category(name='Python')
 # Post(title='Hello Python!', body='Python is pretty cool', category=py, user=admin)
 
-# pogoda = Category(name='Pogoda')
+#pogoda = Category(name='Pogoda')
 # Post(title="Siemka!",body='Słonecznie w Elblągu!',category=pogoda,user=admin)
 # Post(title="Hejka!",body="Film Kroll ma ciekawa pogode.",category=pogoda,user=admin)
 
-# db.session.add(py)
+#db.session.add(py)
 # # db.session.delete(Post.query.first())
-# db.session.commit()
+#db.session.commit()
 # print(Post.query.all())
 # print(User.query.all())
 
 @app.route("/")
 def main():
-    tytul="Witam"
-    tresc="na stronie glownej"
-    return render_template('index.html', tytul=tytul, tresc=tresc )
+    tytul="Zainteresowania Konrada Krusińskiego"
+    tresc="Jako młody student infomatyki w trybie zaocznym pracuję jako obsługa techniczna sklepów internetowych oraz zajmuję się księgowaniem transakcji handlowych. "
+    tresc+="W czasie wolnym staram się rozwijać swoje zaintereoswania i pasje. Jako człowiek młody i dynamicznie rozwijający się postanowiłem, że nie ma sensu "
+    tresc+="ograniczanie się do jednego obszaru zainteresowań. Do swoich głównych zajęć w czasie wolnym zaliczyłbym: tworzenie stron internetowych, majsterkowanie przy "
+    tresc+="elektronice, majsterkowanie przy mechanice (głównie swój samochód oraz motocykl), tworzenie gry - w liczbie pojedyńczej ponieważ aktualnie uczestniczę w "
+    tresc+="swoim pierwszym większym projekcie"
+    informacja="Więcej dokładnych informacji znajduje się w postach"
+    return render_template('index.html', tytul=tytul, tresc=tresc, informacja = informacja )
 
 @app.route('/omnie')
 def omnie():
     tytul="O mnie"
-    tresc="Nazywam sie Konrad"
+    tresc="Nazywam sie Konrad i stworzyłem tę stronę by podzielić się swoimi pasjami."
     return render_template('omnie.html', tytul=tytul,tresc=tresc)
 
 @app.route('/informacje', methods=["GET","POST"])
 @login_required
 def informacje():
-    tytul="Informacje"
-    tresc="Wszystkie posty:"
+    tytul="Zainteresowania"
+    tresc="Wszystkie komentarze:"
     msg=""
+    podtytul1="Elektronika"
+    tresc_zainteresowania1="Lubię naprawiać wszelką elektronikę. Nigdy nic nie daje mi tagiego uczucia zafrasowania jak pierwsze otwarcie nienzanego mi dotąd sprzętu czy "
+    tresc_zainteresowania1+="nieznanej mi dotąd konstrukcji. Elektronika jest obszarem tak obszernym i skomplikowanym, że uważam, że zawsze będę miał wyzwanie z naprawą "
+    tresc_zainteresowania1+="kolejnego telewizora czy kolejnego laptpa i nigdy nie przestaną mnie zaskawiać coraz to nowsze i bardziej skomplikowane konstrukcje. "
+    tresc_zainteresowania1+="Jednym z moich największych marzeń w tej dziedzinie jest skonstruowanie od podstaw inteligentnego systemu, który będzie miał kilka właściwości "
+    tresc_zainteresowania1+="o których opowiem innym razem"
+    podtytul2="Tworzenie gierki"
+    tresc_zainteresowania2="Strasznie frapuje mnie tworzenie światów. Dlatego tworzenie gier jest tematem który jest dla mnie tak pociągający. Będąc twórcą gier można "
+    tresc_zainteresowania2+="być swojego rodzaju bogiem w wykreowanym świecie. Będąc autorem jest się odpowiedzialnym za wszystko i wszystko można stworzyć tak jak się "
+    tresc_zainteresowania2+="chce. Dzięki czemu można wykreować największe okropieństwa lub najpięknięjsze cudy. To jest piękne."
+    link_obrazka1="https://krusinski.com.pl/zdj_el.jpg"
+    link_obrazka2="https://krusinski.com.pl/gierka.png"
     
     if request.method=='POST':
         title=request.form['title']
@@ -89,7 +106,7 @@ def informacje():
             msg="Błąd dodawania posta, spróbuj ponownie"
     
     posty=Post.query.order_by(Post.pub_date).all();
-    return render_template('informacje.html', tytul=tytul, tresc=tresc, posty=posty, msg=msg )
+    return render_template('informacje.html', tytul=tytul, tresc=tresc, podtytul1=podtytul1, podtytul2=podtytul2, posty=posty, msg=msg, tresc_zainteresowania1=tresc_zainteresowania1, tresc_zainteresowania2=tresc_zainteresowania2, link_obrazka1=link_obrazka1, link_obrazka2=link_obrazka2 )
 
 @app.route("/login", methods=["GET", "POST"])
 def login():

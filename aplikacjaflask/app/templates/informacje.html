@@ -1,6 +1,13 @@
 {%extends "baza.html"%}
 
 {% block content %}
+		<h3 class="podtytul">{{podtytul1}}</h3>
+		<p class="lead">{{tresc_zainteresowania1}}</p>
+		<img src="{{link_obrazka1}}" class="obrazki_zainteresowan">
+		<h3 class="podtytul">{{podtytul2}}</h3>
+		<p class="lead">{{tresc_zainteresowania2}}</p>
+		<img src="{{link_obrazka2}}" class="obrazki_zainteresowan">
+		
 		{%if tresc%}
 		<p class="lead">{{tresc}}</p>
 		{%endif%}
@@ -8,13 +15,13 @@
 		{% for post in posty %}
 		<div><p>{{post.pub_date.strftime("%Y-%m-%d %H:%M")}}   {{post.user.username}} napisal/a: <b>{{post.body}}</b></p></div>
 		{%endfor%}
-		<p class="lead">Możesz dodać nowe posty formularzem poniżej</p>
-		<form action="{{ url_for('informacje') }}" method="post">
+		<p class="lead">Możesz dodać nowy komentarz formularzem poniżej</p>
+		<form class="formularz" action="{{ url_for('informacje') }}" method="post">
 			<table>
 				<tbody>
-					<tr><td>Tytuł posta:</td><td><input type=text name=title></td></tr>
+					<tr><td>Tytuł komentarza:</td><td><input type=text name=title></td></tr>
 					<tr><td>Treść:</td><td><input type=textarea name=body></td></tr>
-					<tr><td></td><td><input type=submit value="Dodaj posta"></td></tr>
+					<tr><td></td><td><input type=submit value="Dodaj komentarz"></td></tr>
 				</tbody>
 			</table>
 		</form>

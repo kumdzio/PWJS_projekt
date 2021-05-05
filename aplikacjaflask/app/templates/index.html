@@ -1,7 +1,9 @@
 {%extends "baza.html"%}
-
 {% block content %}
 		{%if tresc%}
-		<p class="lead">{{tresc}}</p>
+		<p class="lead tresc">{{tresc}}</p>
+		{%endif%}
+		{%if informacja%}
+		<p class="informacja">{{informacja}}</p>
 		{%endif%}
 {% endblock %}
